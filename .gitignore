@@ -1,2 +1,16 @@
 # Node modules（自動生成ライブラリ群）
 node_modules/
+
+# VSCode設定
+.vscode/
+
+# Sassファイル
+*.css.map
+
+# システムファイル
+.DS_Store
+Thumbs.db
+
+# その他
+.sass-cache/
+node_modules/
