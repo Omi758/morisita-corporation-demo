@@ -6,6 +6,7 @@ foundation > base
 */
 html {
   overflow-y: scroll; // 常にスクロールバーを表示して、Windows特有のガタツキ防止
+  scrollbar-gutter: stable;
 }
 body {
   line-height: 1.5; // （参考：デフォルト値）zen kaku go new = 1.5, play =1.4, montserrat = 1.2
