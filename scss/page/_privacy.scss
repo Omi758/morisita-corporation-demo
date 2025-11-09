@@ -1,0 +1,64 @@
+@use "../global" as g;
+
+/* =========================
+   Gutenberg出力への橋渡し
+   ========================= */
+.privacy-wrapper {
+  margin: 80px 0;
+  line-height: 1.9;
+  @include g.mq() {
+    margin: 120px 0;
+  }
+  > * + * {
+    margin-top: 1.2em;
+  }
+
+  /* ----- 見出し ----- */
+  h2 {
+    font-size: 20px;
+    margin-top: 3em;
+    margin-bottom: 0.6em;
+    @include g.mq() {
+      font-size: 24px;
+    }
+  }
+  h3 {
+    font-size: 18px;
+    margin-top: 1.6em;
+    margin-bottom: 0.5em;
+    @include g.mq() {
+      font-size: 20px;
+    }
+  }
+
+  /* ----- 段落 ----- */
+  p {
+    margin-top: 1em;
+  }
+
+  /* ------- 番号付きリスト ------- */
+  /* Gutenbergは .wp-block-list や .wp-block-group が間に入るので子孫で取る */
+  ol {
+    padding-left: 0;
+    margin: 1.2em 0;
+    list-style-type: decimal;
+    counter-reset: number;
+  }
+
+  ol > li {
+    counter-increment: number;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 2px;
+    line-height: 1.8;
+  }
+
+  ol > li::before {
+    content: counter(number, decimal) ".";
+    width: 20px;
+    flex: 0 0 20px;
+    margin-right: 8px;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+}

@@ -1,0 +1,43 @@
+@use "../global" as g;
+
+/*!
+component > card
+------------------------------
+*/
+.c-card-link {
+  display: inline-grid;
+}
+.c-card-image {
+  margin: 0 0 16px; /* figureのデフォルトマージンをリセットし、下マージンを設定 */
+}
+
+.c-card-image img {
+  width: 300px;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 0 0 0 32px;
+  @include g.mq() {
+    width: 404px;
+    aspect-ratio: 404 / 269;
+  }
+}
+.c-card-category {
+  font-size: 16px;
+  border: 1px solid var(--color-bg-white);
+  border-radius: 50vh;
+  padding: 1px 7px;
+}
+.c-card-category--white {
+  color: var(--color-text-white);
+}
+.c-card-title {
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  margin-top: 8px;
+  @include g.mq() {
+    font-size: 20px;
+  }
+}
+.c-card-title--white {
+  color: var(--color-text-white);
+}

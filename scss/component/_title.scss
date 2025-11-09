@@ -1,0 +1,74 @@
+@use "../global" as g;
+
+/*!
+component > title
+------------------------------
+*/
+// セクションタイトル
+.c-section-title {
+  display: grid;
+  gap: 8px;
+}
+.c-section-title--en {
+  font-family: var(--font-family-en);
+  font-size: 40px;
+  font-weight: 400;
+  color: var(--color-bg-primary);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+.c-section-title--jp {
+  color: var(--color-text-light-base);
+  @include g.mq() {
+    font-size: 15px;
+  }
+}
+
+.c-section-title-small {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+.c-section-title-small--en {
+  font-family: var(--font-family-en);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--color-bg-primary);
+  text-transform: uppercase;
+  line-height: 1.4;
+}
+
+.c-section-title-small--white {
+  color: var(--color-text-white);
+}
+
+/* --------------
+*  single-page
+  ----------------*/
+
+.c-single-section-title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.c-single-section-title--jp {
+  font-size: 24px;
+  color: var(--color-text-base);
+  letter-spacing: 0.05em;
+  @include g.mq() {
+    font-size: 32px;
+  }
+}
+
+.c-single-section-title--en {
+  font-family: var(--font-family-en);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-bg-primary);
+  text-transform: uppercase;
+  line-height: 1.4;
+  @include g.mq() {
+    font-size: 20px;
+  }
+}

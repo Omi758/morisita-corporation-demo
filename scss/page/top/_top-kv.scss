@@ -1,0 +1,171 @@
+@use "../../global" as g;
+
+/*!
+page > top-kv
+------------------------------
+*/
+
+.top-kv {
+  height: 100svh; // 次のセクションの重なり分を含む
+  position: relative;
+  overflow: hidden; // スライドがはみ出ないように
+}
+
+/* ========================================
+   スライダー全体の設定
+======================================== */
+/* 親要素の.top-kvで囲むことで、このセクションのスライドだけに限定 */
+.top-kv .splide__slide {
+  position: relative; // オーバーレイの基準点
+  height: 100svh; // KVの高さに合わせる
+}
+
+/* 同様に、top-kvセクション内のスライド画像に限定 */
+.top-kv .splide__slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.splide__slide-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 20, 61, 0) 32.13%,
+    rgba(0, 20, 61, 0.7) 100%
+  );
+  z-index: 1;
+}
+
+/* ========================================
+   コンテンツエリア
+======================================== */
+
+.top-kv-content {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 104px;
+  z-index: 2; // オーバーレイの上に表示
+  pointer-events: none; // テキストやプログレスバーがクリックイベントを妨げないように
+  color: var(--color-text-white);
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  @include g.mq() {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-end; // 子要素を下揃えにする
+    padding-top: 478px;
+  }
+}
+
+/* ========================================
+   円形プログレスバー
+======================================== */
+
+.top-kv-progressbar {
+  display: grid; // SVGと数字を中央に配置
+  place-items: center;
+  width: 104px;
+  height: 104px;
+  @include g.mq() {
+    width: 146px;
+    height: 146px;
+  }
+}
+
+.top-kv-progress-circle {
+  transform: rotate(-90deg); // 12時の位置からアニメーションを開始
+  // 親要素いっぱいに広がるように
+  width: 100%;
+  height: 100%;
+
+  circle {
+    fill: transparent;
+    stroke-linecap: round;
+  }
+}
+
+// Gridレイアウトで重ねるために、両方の要素を同じエリアに配置
+.top-kv-progress-circle,
+.top-kv-progress-currentnumber {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+// プログレスバー_背景
+.top-kv-progress-bg {
+  stroke: var(--color-text-light-base);
+  stroke-width: 1.4px;
+  @include g.mq() {
+    stroke-width: 2px;
+  }
+}
+
+// プログレスバー
+.top-kv-progress-bar {
+  stroke: var(--color-bg-white);
+  stroke-width: 1.4px;
+  stroke-dasharray: 446.106; //r=71なので、円周 = 2π × 71 = 446.106...
+  stroke-dashoffset: 446.106; // 初期状態：完全に非表示_初期（0%）
+  @include g.mq() {
+    stroke-width: 2px;
+  }
+}
+
+// プログレスバー内の数字
+.top-kv-progress-currentnumber {
+  font-size: 26px;
+  font-family: var(--font-family-en);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0.05em;
+  @include g.mq() {
+    font-size: 36px;
+  }
+}
+
+/* ========================================
+   テキストエリア
+======================================== */
+
+.top-kv-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  @include g.mq() {
+    gap: 24px;
+  }
+}
+.top-kv-text {
+  font-size: 30px;
+  @include g.mq() {
+    font-size: 45px;
+  }
+  @include g.mq(lg) {
+    font-size: 55px;
+  }
+
+  & span {
+    display: block;
+  }
+}
+.top-kv-text-english {
+  font-size: 18px;
+  font-family: var(--font-family-en);
+  font-weight: 1.5;
+  letter-spacing: 0.05em;
+  opacity: 0.68;
+  @include g.mq() {
+    font-size: 20px;
+    line-height: 1.7;
+  }
+
+  & span {
+    display: block;
+    @include g.mq() {
+      display: contents;
+    }
+  }
+}

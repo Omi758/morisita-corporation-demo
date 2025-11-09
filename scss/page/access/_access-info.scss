@@ -1,0 +1,126 @@
+@use "../../global" as g;
+
+/*!
+page > access-info
+------------------------------
+*/
+.access-info {
+  margin: 80px 0;
+  @include g.mq() {
+    margin: 120px 0;
+  }
+}
+.access-info-wrapper {
+  display: grid;
+  gap: 40px;
+  @include g.mq() {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 72px 39px;
+  }
+}
+
+.access-info-card {
+  display: block;
+  width: 100%;
+}
+
+.access-info-card--hq {
+  @include g.mq() {
+    grid-column: 1 / -1;
+  }
+}
+
+.access-info-text-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.access-info-card--hq .access-info-text-container {
+  @include g.mq() {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+}
+
+.access-info-card:not(.access-info-card--hq) .access-info-text-container {
+  padding-top: 40px;
+  border-top: 1px solid var(--color-sep-grey);
+  @include g.mq() {
+    padding-top: 0;
+    border-top: none;
+  }
+}
+
+.access-info-name {
+  display: block;
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+
+  @include g.mq() {
+    font-size: 24px;
+    letter-spacing: 0.05em;
+    margin-bottom: 11px;
+  }
+}
+
+.access-info-address {
+  line-height: 1.9;
+  margin-bottom: 16px;
+
+  @include g.mq() {
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+}
+
+.access-info-link {
+  margin-bottom: 16px;
+}
+
+.access-info-card--hq .access-info-link {
+  @include g.mq() {
+    margin-bottom: 24px;
+  }
+}
+
+.access-info-card:not(.access-info-card--hq) .access-info-link {
+  @include g.mq() {
+    margin-bottom: 16px;
+  }
+}
+
+.access-info-map {
+  width: 100%;
+  aspect-ratio: 340 / 226;
+  overflow: hidden;
+  border-radius: 0 0 0 32px;
+  position: relative;
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  @include g.mq() {
+    border-radius: 0 0 0 56px;
+    aspect-ratio: 480 / 320;
+  }
+}
+
+.access-info-card--hq .access-info-map {
+  @include g.mq() {
+    aspect-ratio: 1000 / 408;
+  }
+}
+
+.access-info-card.access-info-card:not(.access-info-card--hq) .access-info-map {
+  @include g.mq() {
+  }
+}

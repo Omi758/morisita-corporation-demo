@@ -1,0 +1,20 @@
+@use "../global" as g;
+
+/*!
+foundation > base
+------------------------------
+*/
+html {
+  overflow-y: scroll; // 常にスクロールバーを表示して、Windows特有のガタツキ防止
+}
+body {
+  line-height: 1.5; // （参考：デフォルト値）zen kaku go new = 1.5, play =1.4, montserrat = 1.2
+  font-size: 15px;
+  font-weight: 500; // zen kaku gothic newの500がMedium, playのRegularは400
+  color: var(--color-text-base);
+  font-family: var(--font-family-base);
+
+  @include g.mq() {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,118 @@
+@use "../global" as g;
+
+/*!
+component > cta
+------------------------------
+*/
+.c-cta {
+  /* CTAコンポーネント内だけ有効な変数（topとfont-size） */
+  --cta-marquee-top-sp: 133px;
+  --cta-marquee-top-pc: 172px;
+  --cta-marquee-font-sp: 120px;
+  --cta-marquee-font-pc: 176px;
+
+  background-color: var(--color-bg-lightest-blue);
+  border-radius: 32px 32px 0 0;
+  position: relative;
+  overflow: hidden;
+  @include g.mq() {
+    border-radius: 56px 56px 0 0;
+  }
+}
+
+/* ----- 流れる文字のアニメーション ----- */
+.c-cta--has-marquee .c-cta-marquee {
+  position: absolute;
+  inset-inline: 0;
+  top: var(--cta-marquee-top-sp);
+  z-index: 0;
+  pointer-events: none;
+  @include g.mq() {
+    top: var(--cta-marquee-top-pc);
+  }
+
+  .splide__list {
+    align-items: center;
+  }
+  .splide__slide {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-family: var(--font-family-en);
+    font-weight: 400;
+    line-height: 1.4;
+    font-size: var(--cta-marquee-font-sp);
+    color: var(--color-bg-primary);
+    opacity: 0.07;
+    padding-inline: 2rem;
+    @include g.mq() {
+      font-size: var(--cta-marquee-font-pc);
+    }
+  }
+}
+
+.c-cta-wrapper {
+  padding: 88px 0 96px;
+  @include g.mq() {
+    padding: 134px 0 134px;
+  }
+}
+.c-cta-button {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  width: 240px;
+  aspect-ratio: 1 / 1;
+  background-color: transparent;
+  border: 1px solid var(--color-bg-primary);
+  border-radius: 50%;
+  margin-inline: auto;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+  transform: translate3d(0, 0, 0);
+
+  @include g.mq() {
+    width: 308px;
+  }
+
+  &:hover {
+    transform: translate3d(0, 0, 0) scale(1.05);
+  }
+}
+
+.c-cta-button-text {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 218px;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  background: linear-gradient(150deg, #0772d1, #254da0);
+  @include g.mq() {
+    gap: 16px;
+    width: 280px;
+  }
+}
+
+.c-cta-button-text--en {
+  font-size: 32px;
+  font-weight: 400;
+  font-family: var(--font-family-en);
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--color-text-white);
+  @include g.mq() {
+    font-size: 40px;
+  }
+}
+
+.c-cta-button-text--jp {
+  color: var(--color-text-white);
+  @include g.mq() {
+    font-size: 15px;
+  }
+}

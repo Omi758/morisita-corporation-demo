@@ -1,0 +1,15 @@
+{
+  "name": "morishita_corporation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "browser-sync start --proxy http://morisita-corporation.local --files '**/*.php' '**/*.css' '**/*.js' --no-notify --no-open"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^3.0.4"
+  }
+}

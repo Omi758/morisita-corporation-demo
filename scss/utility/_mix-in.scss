@@ -1,0 +1,75 @@
+@use "../global" as g;
+
+/*!
+utility > mixin
+------------------------------
+*/
+// ホバー時の下線アニメーション（パンくずリスト）
+
+@mixin hover-underline-animation-breadcrumbs {
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-text-base);
+    bottom: 1px;
+    opacity: 0;
+    transform: translateY(-5px);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+  }
+
+  &:hover::before {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// ホバー時の下線(黒)アニメーション（下層ページ：header）
+@mixin hover-underline-animation-black {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-text-base);
+    bottom: 1px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: translateY(0); // ホバー時に元の位置に戻す
+  }
+}
+
+// ホバー時の下線(白)アニメーション（Topページのスタイル）
+@mixin hover-underline-animation {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--color-text-white);
+    bottom: 1px;
+    opacity: 0;
+    transform: translateY(-8px);
+    transition: transform 0.2s ease, opacity 0.3s ease;
+  }
+
+  &:hover::after {
+    opacity: 1;
+    transform: translateY(0); // ホバー時に元の位置に戻す
+  }
+}

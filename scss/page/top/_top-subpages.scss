@@ -1,0 +1,87 @@
+@use "../../global" as g;
+
+/*!
+page > top-subpages
+------------------------------
+*/
+.top-subpages {
+  width: 100%;
+  margin: 80px 0;
+}
+
+.top-subpages-list {
+  display: grid;
+  gap: 24px;
+  @include g.mq() {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+  }
+}
+.top-subpage-item {
+  padding: 0 16px;
+
+  @include g.mq() {
+    padding: 0;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--color-sep-lightgrey);
+    padding-bottom: 32px;
+    @include g.mq() {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+
+  &:not(:first-child) {
+    @include g.mq() {
+      border-left: 1px solid var(--color-sep-lightgrey);
+      padding-left: 45px;
+    }
+  }
+
+  article {
+    height: 100%;
+  }
+}
+
+.top-subpage-link {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  transition: color 0.3s ease;
+
+  @include g.mq() {
+    height: 100%; // PC版で高さを親要素に合わせ、アイテムの高さを揃える
+  }
+
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 40px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50vh;
+    background-color: var(--color-bg-lightest-blue);
+    background-image: url("../img/icon-arrow-right-blue.svg");
+    background-size: 12px 11px;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-self: flex-end;
+    transition: background-color 0.3s ease, background-image 0.3s ease;
+
+    @include g.mq() {
+      width: 44px;
+      margin-top: auto; // フレックスコンテナの下端に配置_テキスト量が増えた時の対策
+    }
+  }
+  &:hover {
+    &::after {
+      background-color: var(--color-bg-primary);
+      background-image: url("../img/icon-arrow-right-white.svg");
+    }
+  }
+}
+
+.top-subpage-text {
+  line-height: 1.9;
+}

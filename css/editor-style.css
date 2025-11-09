@@ -1,0 +1,201 @@
+/*!
+Editor Styles (Gutenberg)
+- 管理画面のブロックエディタ用
+- iframe 内で適用
+------------------------------
+*/
+:root {
+  --color-bg-primary: #1e4aa4;
+  --color-bg-light-grey: #eaecef;
+  --color-bg-lightest-blue: #f5f8fb;
+  --color-bg-darkblue: #222a38;
+  --color-bg-white: #ffffff;
+  --color-bg-white-transparent: rgba(255, 255, 255, 0.2);
+  --color-text-base: #49515f;
+  --color-text-primary: #1e4aa4;
+  --color-text-white: #ffffff;
+  --color-text-white-grey: #d9d9d9;
+  --color-text-light-base: #9a9eac;
+  --color-text-red: #c82b2b;
+  --color-text-black: #333333;
+  --color-other-logo-blue: #06235e;
+  --color-other-logo: #e5ebf0;
+  --color-other-link: #497fdf;
+  --color-sep-lightgrey: #eeeeee;
+  --color-sep-light-blue: #497fdf;
+  --color-sep-grey: rgba(51, 51, 51, 0.1);
+  --color-border-lightgrey: #dcdcdc;
+  --color-border-grey: #c7c7c7;
+}
+
+/*!
+  font
+------------------------------
+*/
+:root {
+  --font-family-base: "Zen Kaku Gothic New", sans-serif;
+  --font-family-en: "Play", sans-serif;
+  --font-family-tel: "Montserrat", sans-serif;
+}
+
+/* -----------------------------------------
+   ベース（本文フォント・色）
+   - wrapper 有無どちらにも適用
+----------------------------------------- */
+.editor-styles-wrapper,
+.edit-post-visual-editor,
+.block-editor-writing-flow {
+  font-family: var(--font-family-base);
+  color: var(--color-text-base);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+}
+@media (min-width: 768px) {
+  .editor-styles-wrapper,
+  .edit-post-visual-editor,
+  .block-editor-writing-flow {
+    font-size: 16px;
+  }
+}
+
+/* -----------------------------------------
+   余白ミニリセット + 16pxリズム
+----------------------------------------- */
+:where(
+    .editor-styles-wrapper,
+    .edit-post-visual-editor,
+    .block-editor-writing-flow
+  )
+  :where(h1, h2, h3, h4, h5, h6, p, ul, ol, figure) {
+  margin: 0;
+}
+
+.block-editor-block-list__layout > * + *,
+.wp-block-group > * + *,
+.wp-block-columns > * + *,
+.wp-block-column > * + * {
+  margin-top: 16px;
+}
+
+/* -----------------------------------------
+   見出し・段落
+----------------------------------------- */
+h1 {
+  font-size: 44px;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+h2 {
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+h3 {
+  font-size: 20px;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+}
+p {
+  line-height: 1.9;
+}
+
+/* -----------------------------------------
+   リスト（UL / OL）
+----------------------------------------- */
+ul {
+  list-style: disc;
+  padding-left: 1.25em;
+}
+ul li {
+  line-height: 1.9;
+}
+ul li::marker {
+  color: var(--color-bg-primary);
+  font-weight: 600;
+}
+
+ol {
+  list-style: none;
+  padding-left: 0;
+  counter-reset: number;
+}
+
+ol li {
+  line-height: 1.9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+ol > li::before {
+  counter-increment: number;
+  content: counter(number, decimal-leading-zero) "." !important;
+  font-family: var(--font-family-en);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  color: var(--color-bg-primary);
+  flex: 0 0 auto;
+}
+
+li {
+  margin: 0.4em 0;
+}
+
+/* -----------------------------------------
+   画像・図版
+----------------------------------------- */
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+figure {
+  margin: 1.5em 0;
+}
+figcaption {
+  font-size: 0.875rem;
+  color: var(--color-text-light-base, #6b7280);
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+/* -----------------------------------------
+   リンク
+----------------------------------------- */
+a {
+  color: var(--color-other-link);
+  text-decoration: underline;
+  transition: opacity 0.2s ease;
+  line-height: 1.9;
+}
+a:hover {
+  opacity: 0.8;
+}
+
+/* -----------------------------------------
+   引用・表（最小）
+----------------------------------------- */
+blockquote {
+  border-left: 4px solid var(--color-bg-primary);
+  padding-left: 1em;
+  color: #374151;
+  margin: 1.5em 0;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+th,
+td {
+  border-top: 1px solid var(--color-sep-lightgrey);
+  border-bottom: 1px solid var(--color-sep-lightgrey);
+  padding: 0.75em 0.5em;
+}
+th {
+  font-weight: 700;
+}
