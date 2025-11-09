@@ -1,0 +1,259 @@
+@use "../../global" as g;
+
+/*!
+page > business-design
+------------------------------
+*/
+.business-design {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 80px 0;
+
+  @include g.mq(lg) {
+    grid-template-columns: 240px 1fr 70%;
+    align-items: start; // stickyの初期設定_意図通り効くように
+    margin: 128px 0 201px;
+  }
+}
+
+/* -------------------------------
+* サイド 目次(table of contents)
+-------------------------------- */
+.business-toc {
+  display: none;
+
+  @include g.mq(lg) {
+    display: grid;
+    gap: 32px;
+    grid-column: 1/ 2;
+    position: sticky;
+    top: 0;
+    align-self: start;
+  }
+}
+
+.business-toc-list {
+  display: grid;
+  gap: 16px;
+}
+.business-toc-item {
+  line-height: 1.5;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &::after {
+    content: "";
+    background-image: url("../img/icon-arrow-right-blue.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 9px;
+    height: 9px;
+  }
+}
+
+.business-toc-link {
+  width: 100%;
+  opacity: 0.5;
+  display: block;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+/* 現在地（ScrollTriggerで.is-active と aria-current を付け替え） */
+.business-toc-link.is-active,
+.business-toc-link[aria-current="location"] {
+  opacity: 1;
+}
+
+/* -------------------------------
+* コンテンツ部分
+-------------------------------- */
+.business-design-content {
+  display: grid;
+  gap: 80px;
+  @include g.mq(lg) {
+    grid-column: 3 / 4;
+  }
+}
+
+// problem
+.business-problem-text-container {
+  display: grid;
+  gap: 16px;
+  @include g.mq() {
+    gap: 24px;
+  }
+}
+
+.business-problem-text {
+  font-size: 16px;
+  line-height: 2;
+  margin-bottom: 24px;
+  @include g.mq() {
+    line-height: 1.9;
+  }
+}
+
+.business-problem-list {
+  display: grid;
+  gap: 24px;
+  padding: 32px 20px;
+  background-color: var(--color-bg-lightest-blue);
+  @include g.mq() {
+    padding: 48px 40px;
+  }
+}
+
+.business-problem-item {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+
+  @include g.mq() {
+    font-size: 18px;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    flex-shrink: 0; // アイコンが縮まないように設定
+    background-image: url("../img/icon-check-blue-white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: top;
+    width: 21px;
+    height: 21px;
+    margin-top: 3px;
+    @include g.mq() {
+      width: 27px;
+      height: 27px;
+      margin-top: 0;
+    }
+  }
+}
+
+// feature
+.business-feature-text-container {
+  margin-bottom: 24px;
+  @include g.mq() {
+    margin-bottom: 32px;
+  }
+}
+
+.business-feature-card-container {
+  display: grid;
+  gap: 24px;
+}
+.business-feature-item {
+  @include g.mq() {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 32px;
+  }
+}
+
+.business-feature-image {
+  width: 100%;
+
+  & img {
+    border-radius: 0 0 0 40px;
+    aspect-ratio: 340 / 170;
+    @include g.mq() {
+      aspect-ratio: 240 / 160;
+    }
+  }
+}
+
+.business-feature-text {
+  margin-top: 16px;
+  @include g.mq() {
+    margin-top: 0;
+    align-content: center;
+  }
+}
+
+.business-feature-text h3 {
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  @include g.mq() {
+    font-size: 24px;
+  }
+}
+
+.business-feature-text p {
+  line-height: 1.9;
+  margin-top: 10px;
+}
+
+// flow
+.business-flow-text-container {
+  margin-bottom: 24px;
+  @include g.mq() {
+    margin-bottom: 32px;
+  }
+}
+
+.business-flow-wrapper {
+  display: grid;
+  gap: 32px;
+  counter-reset: number;
+  @include g.mq() {
+    gap: 24px;
+  }
+}
+
+.business-flow-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  @include g.mq() {
+    gap: 40px;
+  }
+  @include g.mq(lg) {
+    gap: 32px;
+  }
+}
+
+.business-flow-item-img {
+  width: 100px;
+  aspect-ratio: 1 / 1;
+  @include g.mq() {
+    width: 150px;
+  }
+}
+
+.business-flow-item-title {
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  display: grid;
+  @include g.mq() {
+    font-size: 24px;
+  }
+  &::before {
+    content: "1";
+    font-size: 24px;
+    font-family: var(--font-family-en);
+    letter-spacing: 0.05em;
+    color: var(--color-text-primary);
+    line-height: 1.4;
+    font-weight: 400;
+    counter-increment: number;
+    content: "0" counter(number) ".";
+  }
+}
+
+.business-flow-item-text {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  margin-top: 3px;
+  @include g.mq() {
+    margin-top: 10px;
+  }
+}

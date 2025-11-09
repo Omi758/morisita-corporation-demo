@@ -1,0 +1,76 @@
+@use "../global" as g;
+
+/*!
+component > pagination
+------------------------------
+*/
+.c-pagination {
+  margin-top: 80px;
+  display: flex;
+  justify-content: center;
+
+  &-list {
+    display: flex;
+    gap: 10px;
+  }
+
+  &-item {
+    .page-numbers {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 48px;
+      aspect-ratio: 1 / 1;
+      padding: 12px;
+      color: var(--color-text-light-base);
+      border: 1px solid var(--color-border-grey);
+      border-radius: 50vh;
+      font-family: var(--font-family-en);
+      line-height: 1.4;
+      font-size: 14px;
+      transition: background-color 0.2s ease, color 0.2s ease,
+        border-color 0.2s ease;
+
+      /* hover & focus */
+      &:hover,
+      &:focus-visible {
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-white);
+        border-color: var(--color-bg-primary);
+        outline: none;
+      }
+
+      &:focus-visible {
+        box-shadow: 0 0 0 2px var(--color-border-grey);
+      }
+
+      &.current {
+        background-color: var(--color-bg-primary);
+        color: var(--color-text-white);
+        border-color: var(--color-bg-primary);
+        pointer-events: none;
+        box-shadow: none;
+      }
+
+      /* 省略記号(…) */
+      &.dots {
+        border-color: transparent;
+        background: transparent;
+        padding: 0 4px;
+        pointer-events: none;
+      }
+
+      &.prev,
+      &.next {
+        padding: 0 12px;
+        font-size: 12px;
+        font-family: var(--font-family-en);
+        text-transform: uppercase;
+        line-height: 1.4;
+        font-weight: 400;
+        width: 50px;
+        aspect-ratio: 1 / 1;
+      }
+    }
+  }
+}

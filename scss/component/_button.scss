@@ -1,0 +1,67 @@
+@use "../global" as g;
+
+/*!
+component > button
+------------------------------
+*/
+.c-button {
+  padding: 16px 24px;
+  font-size: 16px;
+  font-family: var(--font-family-en);
+  line-height: 1.4;
+  font-weight: 400;
+  border-radius: 50vh;
+  text-transform: uppercase;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  white-space: nowrap;
+  transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+
+  &::after {
+    content: "";
+    width: 12px;
+    height: 11px;
+    background-color: var(--color-bg-primary);
+    mask: url("../img/icon-arrow-right-white.svg") no-repeat center / contain;
+    -webkit-mask: url("../img/icon-arrow-right-white.svg") no-repeat center /
+      contain;
+    flex-shrink: 0; // flexコンテナが縮んでもアイコンは縮まない設定
+    transition: background-color 0.3s ease;
+  }
+}
+.c-button--lightest-blue {
+  color: var(--color-text-base);
+  background-color: var(--color-bg-lightest-blue);
+
+  &:hover {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-white);
+    &::after {
+      background-color: var(--color-text-white);
+    }
+  }
+}
+
+.c-button--white {
+  color: var(--color-text-white);
+  background-color: var(--color-bg-white-transparent);
+  border: 1px solid var(--color-text-white);
+  width: 272px;
+  padding: 23px 31px;
+  font-size: 18px;
+
+  &::after {
+    background-color: var(--color-text-white);
+  }
+
+  &:hover {
+    color: var(--color-bg-primary);
+    background-color: var(--color-bg-lightest-blue);
+    transform: none;
+    &::after {
+      background-color: var(--color-bg-primary);
+    }
+  }
+}

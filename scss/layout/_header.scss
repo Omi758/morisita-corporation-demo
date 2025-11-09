@@ -1,0 +1,475 @@
+@use "../global" as g;
+@use "../utility/mix-in" as mixin;
+
+/*!
+layout > header
+------------------------------
+*/
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: var(--z-index-header);
+  background-color: transparent;
+}
+
+.header-inner {
+  display: grid;
+  grid-template-columns: 1fr 56px;
+  width: 100%;
+  padding-top: 32px;
+  align-items: center;
+  @include g.mq() {
+    padding-top: 48px;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+  }
+}
+
+.header-logo img {
+  width: 160px;
+  aspect-ratio: 160 / 48;
+
+  @include g.mq(lg) {
+    width: 200px;
+    aspect-ratio: 200 / 60;
+  }
+
+  @include g.mq(xl) {
+    width: 247px;
+    aspect-ratio: 247 / 74;
+  }
+}
+
+/* topページのlogoは白に変換
+*  それ以外のページはbodyタグにpage-top → page-subクラス名の付け替えでカラーのロゴにする
+*/
+.page-top .header-logo img {
+  filter: brightness(0) invert(1);
+}
+
+.page-sub .header-logo img {
+  filter: none;
+}
+
+/* ----- hamburger-menuの設定 ----- */
+.header-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-index-modal);
+  background-color: var(--color-bg-primary);
+
+  @include g.mq() {
+    position: static;
+    display: block !important; // PC表示時は常に表示・位置を通常に
+    width: auto;
+    height: auto;
+    background-color: transparent;
+    justify-self: end;
+  }
+
+  &::backdrop {
+    display: none;
+  }
+}
+
+.header-menu-head {
+  display: grid;
+  grid-template-columns: 1fr 56px;
+  align-items: center;
+  width: 89%;
+  margin: 32px auto;
+  @include g.mq() {
+    display: none;
+  }
+}
+
+.header-menu-close-line {
+  position: relative;
+  width: 32px;
+  height: 17px; /* 回転した線が収まるように高さを設定 */
+
+  @include g.mq() {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: var(--color-bg-white);
+    width: 36px;
+    height: 1px;
+
+    &:nth-child(1) {
+      transform: translate(-50%, -50%) rotate(27deg);
+    }
+
+    &:nth-child(2) {
+      transform: translate(-50%, -50%) rotate(-27deg);
+    }
+  }
+}
+
+.header-menu-container {
+  width: 89%;
+  margin: 0 auto;
+  @include g.mq() {
+    width: auto;
+  }
+}
+
+.header-menu-nav {
+  color: var(--color-text-white);
+  margin-top: 63px;
+  margin-bottom: 72px;
+
+  @include g.mq() {
+    margin-top: 0;
+    margin-left: 0;
+    max-width: none;
+    width: auto;
+    margin-bottom: 0;
+  }
+}
+
+// 下層ページのheaderナビメニュー文字色
+.page-sub .header-menu-nav {
+  @include g.mq() {
+    color: var(--color-text-base);
+  }
+}
+
+/* ----- PC版：headerナビメニュー設定 ----- */
+.header-menu-list {
+  @include g.mq() {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
+
+.header-menu-item {
+  @include g.mq() {
+    position: relative;
+  }
+}
+
+.header-menu-item {
+  // Topページ：2,4,5番目のメニュー項目に下線アニメーション(白)を適用
+  &:nth-child(2),
+  &:nth-child(4),
+  &:nth-child(5) {
+    .header-menu-item-jp {
+      @include g.mq() {
+        @include mixin.hover-underline-animation;
+      }
+    }
+  }
+}
+
+.page-sub .header-menu-item {
+  // 下層ページ：2,4,5番目のメニュー項目にアニメーション(黒)を適用
+  &:nth-child(2),
+  &:nth-child(4),
+  &:nth-child(5) {
+    .header-menu-item-jp {
+      @include g.mq() {
+        @include mixin.hover-underline-animation-black;
+      }
+    }
+  }
+}
+
+.header-menu-link,
+.header-menu-title {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  padding: 19px 0 19px 16px;
+  border-top: 1px solid var(--color-bg-white-transparent);
+  @include g.mq() {
+    padding: 0;
+    border-top: none;
+    white-space: nowrap;
+  }
+}
+
+// buttonスタイルをリセット
+.header-menu-title {
+  all: unset;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  gap: 8px;
+  align-items: baseline;
+  padding: 19px 0 19px 16px;
+  border-top: 1px solid var(--color-bg-white-transparent);
+  @include g.mq() {
+    border-top: none;
+    padding-left: 0;
+  }
+}
+
+.header-menu-item:last-child .header-menu-link {
+  border-bottom: 1px solid var(--color-bg-white-transparent);
+
+  @include g.mq() {
+    border-bottom: none;
+  }
+}
+
+.header-menu-item-en {
+  font-family: var(--font-family-en);
+  font-size: 24px;
+  font-weight: 400;
+  text-transform: uppercase;
+
+  @include g.mq() {
+    display: none;
+  }
+}
+
+.header-menu-item:first-child .header-menu-item-en {
+  @include g.mq() {
+    display: block; //PC版headerメニューのHOMEの表示
+    font-size: 15px;
+    line-height: 1.9;
+    margin-right: 18px;
+    text-transform: uppercase;
+    @include mixin.hover-underline-animation;
+  }
+
+  @include g.mq(lg) {
+    margin-right: 28px;
+  }
+
+  @include g.mq(xl) {
+    margin-right: 40px;
+    font-size: 16px;
+  }
+}
+
+.page-sub .header-menu-item:first-child .header-menu-item-en {
+  @include g.mq() {
+    @include mixin.hover-underline-animation-black;
+  }
+}
+
+.header-menu-item-jp {
+  @include g.mq() {
+    display: block;
+    font-size: 15px;
+    line-height: 1.9;
+    margin-right: 15px;
+  }
+
+  @include g.mq(lg) {
+    margin-right: 28px;
+  }
+
+  @include g.mq(xl) {
+    margin-right: 40px;
+    font-size: 16px;
+  }
+}
+
+.header-menu-item:first-child .header-menu-item-jp {
+  @include g.mq() {
+    display: none; //PC版headerメニューのHOMEの日本語は非表示
+  }
+}
+
+.header-menu-item:nth-child(3) .header-menu-item-jp {
+  display: flex;
+  align-items: center;
+}
+
+.header-menu-item:nth-child(3) .header-menu-item-jp::after {
+  @include g.mq() {
+    content: "";
+    width: 9px;
+    aspect-ratio: 1 / 1;
+    background-image: url("../img/icon-arrow-down-white.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 9px;
+  }
+}
+
+// 下層ページ:3番目(事業紹介)矢印アイコン
+.page-sub .header-menu-item:nth-child(3) .header-menu-item-jp {
+  display: flex;
+  align-items: center;
+}
+
+.page-sub .header-menu-item:nth-child(3) .header-menu-item-jp::after {
+  @include g.mq() {
+    content: "";
+    width: 9px;
+    aspect-ratio: 1 / 1;
+    background-image: url("../img/icon-arrow-down-black.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: 9px;
+  }
+}
+
+/* ----- お問い合わせボタン ----- */
+.header-menu-item:nth-child(6) .header-menu-item-jp {
+  @include g.mq() {
+    color: var(--color-text-white);
+    padding: 12px 15px;
+    border-radius: 50vh;
+    border: 1px solid transparent; // hover時のズレ防止のため
+    background-color: var(--color-bg-primary);
+    margin-right: 0;
+    transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+
+    &:hover {
+      background-color: var(--color-bg-white);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-text-primary);
+    }
+  }
+
+  @include g.mq(lg) {
+    padding: 12px 32px;
+  }
+}
+
+/* ----- sp版ハンバーガーメニュー_hover animation ----- */
+.header-menu-link {
+  transition: background-color 0.2s ease;
+  @include g.mq() {
+    transition: none;
+  }
+  &:hover {
+    background-color: var(--color-bg-white-transparent);
+    @include g.mq() {
+      background-color: transparent;
+    }
+  }
+}
+
+/* ----- PC版 サブメニュー ----- */
+.header-menu-item:nth-child(3) .header-menu-sub-list {
+  @include g.mq() {
+    position: absolute;
+    top: 62px;
+    left: 0;
+    width: 312px;
+    background-color: var(--color-bg-primary);
+    border-radius: 16px;
+    opacity: 0; // 初期設定
+    visibility: hidden; // 初期設定
+    z-index: var(--z-index-modal);
+    padding: 8px;
+    margin-left: -111px; /* 中央配置のためのオフセット = (文字幅：90px - 312px) / 2 = -111px */
+    transform: translateY(-10px); /* 中央配置 + 上に少しずらす */
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  }
+}
+
+/* --------------------------------------------------------
+*PC版 ホバー時にサブメニューを表示
+*focusが当たった際にもサブメニューを表示(疑似要素:focus-within)
+ ---------------------------------------------------------- */
+.header-menu-item:nth-child(3):is(:hover, :focus-within) .header-menu-sub-list {
+  @include g.mq() {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); /* 元の位置に戻す */
+  }
+}
+
+.header-menu-item:nth-child(3) .header-menu-sub-item {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  border-top: 1px solid var(--color-bg-white-transparent);
+
+  @include g.mq() {
+    color: var(--color-text-white);
+  }
+}
+
+.header-menu-item:nth-child(3) .header-menu-sub-item:first-child {
+  @include g.mq() {
+    border-top: none;
+  }
+}
+
+.header-menu-item:nth-child(3) .header-menu-sub-link {
+  display: block;
+  padding: 15px 16px;
+  position: relative;
+  transition: opacity 0.2s ease;
+
+  @include g.mq() {
+    padding: 16px;
+  }
+}
+
+/* ----- サブメニューリンクのホバー効果 ----- */
+.header-menu-item:nth-child(3) .header-menu-sub-link:is(:hover, :focus) {
+  opacity: 0.7;
+}
+
+.header-menu-item:nth-child(3) .header-menu-sub-link::after {
+  content: "";
+  background-image: url("../img/icon-arrow-right-white.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 9px;
+  height: 9px;
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+}
+
+/* ----- ハンバーガーボタンの設定 ----- */
+.header-hamburger-button,
+.header-menu-close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 1 / 1;
+  border-radius: 50vh;
+
+  @include g.mq() {
+    display: none;
+  }
+}
+
+.header-hamburger-button {
+  background-color: var(--color-bg-primary);
+}
+
+.header-menu-close-button {
+  border: solid 1px var(--color-bg-white);
+}
+
+.header-hamburger-button-line {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-inline: auto;
+  width: 32px;
+  height: 16px;
+
+  span {
+    display: block;
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-bg-white);
+  }
+}

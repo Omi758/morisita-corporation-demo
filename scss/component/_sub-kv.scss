@@ -1,0 +1,232 @@
+@use "../global" as g;
+@use "../utility/mix-in" as mixin;
+
+/*!
+component > sub-kv
+------------------------------
+*/
+
+.c-subkv {
+  padding: 121px 0 38px;
+  background-color: var(--color-bg-lightest-blue);
+
+  @include g.mq() {
+    padding: 183px 0 99px;
+  }
+}
+
+.c-subkv-title {
+  display: grid;
+  gap: 8px;
+  @include g.mq() {
+    gap: 16px;
+  }
+}
+.c-subkv-title span {
+  display: block;
+}
+
+.c-subkv-title--en {
+  font-size: 50px;
+  font-weight: 400;
+  font-family: var(--font-family-en);
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  @include g.mq() {
+    font-size: 72px;
+  }
+}
+.c-subkv-title--ja {
+  @include g.mq() {
+    font-size: 18px;
+    letter-spacing: 0.05em;
+  }
+}
+/* -----------------
+* パンくずリスト
+------------------ */
+.breadcrumbs {
+  padding-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include g.mq() {
+    padding-top: 29px;
+  }
+}
+
+.breadcrumbs a {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  @include mixin.hover-underline-animation-breadcrumbs;
+}
+
+.breadcrumbs a:first-child {
+  text-transform: uppercase;
+}
+
+// Breadcrumb NavXT用CSS
+.breadcrumb-separator {
+  display: inline-block;
+  background-image: url("../img/icon-arrow-right-blue.svg");
+  width: 9px;
+  aspect-ratio: 1 / 1;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 16px;
+  margin-left: 16px;
+
+  @include g.mq(lg) {
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+
+  @include g.mq(xl) {
+    margin-right: 16px;
+    margin-left: 16px;
+  }
+}
+
+// Breadcrumb NavXTの出力要素のスタイリング
+.breadcrumbs span[property="itemListElement"] {
+  display: inline-flex;
+  align-items: center;
+  font-size: 14px;
+  letter-spacing: 0.05em;
+
+  @include g.mq(lg) {
+    letter-spacing: 0em;
+  }
+
+  @include g.mq(xl) {
+    letter-spacing: 0.05em;
+  }
+
+  a {
+    @include g.mq() {
+      @include mixin.hover-underline-animation-breadcrumbs;
+    }
+  }
+}
+
+.breadcrumbs span[property="itemListElement"]:last-child {
+  color: var(--color-bg-primary);
+}
+
+/*!
+component > subkv-single
+------------------------------
+*/
+.c-subkv-single {
+  background-color: var(--color-bg-lightest-blue);
+}
+.c-subkv-single-wrapper {
+  padding-top: 121px;
+  padding-bottom: 40px;
+
+  @include g.mq() {
+    padding-top: 170px;
+  }
+
+  @include g.mq(lg) {
+    padding-bottom: 0;
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 484px;
+    gap: 56px;
+  }
+
+  @include g.mq(xl) {
+    padding-top: 183px;
+  }
+}
+
+.c-subkv-single-image {
+  @include g.mq(lg) {
+    position: absolute;
+    bottom: -73px;
+    right: 0;
+    width: 100%;
+    max-width: 484px;
+    z-index: 1;
+  }
+}
+
+.c-subkv-single-image img {
+  aspect-ratio: 340 / 169;
+  object-fit: cover;
+  border-radius: 0 0 0 56px;
+  border: 1px solid var(--color-sep-lightgrey);
+
+  @include g.mq(lg) {
+    aspect-ratio: 484 / 323;
+  }
+}
+
+.c-subkv-single-text-container {
+  margin-top: 19px;
+  display: grid;
+  @include g.mq(lg) {
+    margin-top: 0;
+  }
+}
+
+.c-subkv-single-text-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.c-subkv-single-title {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.c-subkv-single-title--en {
+  font-size: 24px;
+  font-family: var(--font-family-en);
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-bg-primary);
+  text-transform: uppercase;
+}
+
+.c-subkv-single-title--ja {
+  color: var(--color-text-light-base);
+}
+
+.c-subkv-single-time {
+  font-family: var(--font-family-en);
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.4;
+  color: var(--color-text-black);
+}
+
+.c-subkv-single-title-text {
+  margin-top: 12px;
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  @include g.mq() {
+    font-size: 44px;
+    margin-top: 16px;
+    padding-bottom: 117px;
+  }
+}
+
+.c-subkv-single-title-text.c-subkv-news-single-title-text {
+  @include g.mq() {
+    padding-bottom: 53px;
+  }
+}
+
+.c-subkv-single-breadcrumbs {
+  @include g.mq(lg) {
+    padding-bottom: 25px;
+  }
+}

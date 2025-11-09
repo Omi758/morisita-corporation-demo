@@ -1,0 +1,100 @@
+@use "../../global" as g;
+
+/*!
+page > top-news
+------------------------------
+*/
+.top-news {
+  position: relative;
+  z-index: var(--z-index-default);
+  margin-top: -32px; //kvに重なる部分
+  margin-left: auto; //左余白
+  padding: 64px 0;
+  background-color: var(--color-bg-white);
+  width: 95%;
+  border-radius: 32px 0 0 0;
+  @include g.mq() {
+    border-radius: 56px 0 0 0;
+  }
+}
+
+.top-news-wrapper {
+  display: grid;
+  gap: 40px;
+  width: 89%; // 320px(コンテンツ幅) / 360px(wrapperの幅) = 88.8%
+  margin: 0 auto;
+  @include g.mq() {
+    width: 89%;
+    max-width: 1210px;
+    grid-template-columns: 200px 80px 1fr;
+    grid-template-rows: auto 1fr auto;
+    gap: 0;
+  }
+}
+
+.top-news-title {
+  @include g.mq() {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+}
+
+.top-news-list {
+  @include g.mq() {
+    grid-column: 3/4;
+    grid-row: 1/4;
+  }
+}
+.top-news-item {
+  border-top: 1px solid var(--color-sep-lightgrey);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-bg-lightest-blue);
+  }
+
+  @include g.mq() {
+  }
+
+  &:last-child {
+    border-bottom: 1px solid var(--color-sep-lightgrey);
+  }
+}
+
+.top-news-link {
+  padding: 20px 16px 19px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  @include g.mq() {
+    padding: 32px 16px 31px;
+
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+}
+.top-news-date {
+  font-family: var(--font-family-en);
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 400;
+  width: 120px;
+}
+.top-news-post-title {
+  line-height: 1.9;
+  @include g.mq() {
+    font-size: 16px;
+  }
+}
+
+.top-news-button {
+  justify-self: end;
+  @include g.mq() {
+    grid-column: 1/2;
+    grid-row: 3/4;
+    align-self: end;
+  }
+}

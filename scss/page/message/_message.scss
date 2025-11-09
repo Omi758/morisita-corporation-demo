@@ -1,0 +1,83 @@
+@use "../../global" as g;
+
+/*!
+page > message
+------------------------------
+*/
+.message {
+  margin: 80px 0;
+
+  @include g.mq() {
+    margin: 120px 0;
+  }
+}
+
+.message-wrapper {
+  display: grid;
+  gap: 32px;
+  @include g.mq(lg) {
+    grid-template-columns: auto auto;
+    gap: 56px;
+  }
+}
+
+.message-image {
+  width: 100%;
+
+  & img {
+    aspect-ratio: 340 / 228;
+    border-radius: 0 0 0 32px;
+    @include g.mq(lg) {
+      aspect-ratio: 400 / 533;
+      border-radius: 0 0 0 56px;
+      max-width: 400px;
+    }
+  }
+}
+
+.message-text-wrapper {
+  display: grid;
+  gap: 32px;
+  @include g.mq() {
+    gap: 40px;
+  }
+}
+
+.message-heading {
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  margin-bottom: 16px;
+  @include g.mq() {
+    font-size: 32px;
+    margin-bottom: 24px;
+  }
+}
+
+.message-heading-first {
+  display: block;
+  color: var(--color-text-primary);
+}
+.message-heading-second span {
+  @include g.mq(lg) {
+    display: block;
+  }
+}
+
+.message-text {
+  line-height: 1.9;
+
+  & p:first-of-type {
+    margin-bottom: 12px;
+  }
+}
+
+.message-role {
+  line-height: 1.9;
+}
+.message-name {
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  @include g.mq() {
+    font-size: 32px;
+  }
+}

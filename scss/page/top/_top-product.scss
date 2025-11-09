@@ -1,0 +1,174 @@
+@use "../../global" as g;
+
+/*!
+page > top-product
+------------------------------
+*/
+.top-product {
+  background-image: url(../img/top-product-bg.webp);
+  background-size: cover;
+  background-position: center;
+  padding: 88px 0;
+  border-radius: 32px;
+  @include g.mq() {
+    background-image: url(../img/top-product-bg-pc.webp);
+    border-radius: 56px;
+  }
+}
+
+.top-product-title {
+  margin-bottom: 8px;
+  @include g.mq() {
+    margin-bottom: 16px;
+  }
+}
+
+.top-product-title-text {
+  font-size: 28px;
+  letter-spacing: 0.05em;
+  color: var(--color-text-white);
+  margin-bottom: 40px;
+
+  @include g.mq() {
+    font-size: 32px;
+  }
+}
+
+.top-product-text {
+  line-height: 1.9;
+  overflow-wrap: break-word;
+  color: var(--color-text-white);
+
+  & span {
+    display: block;
+  }
+}
+
+/* --------------------
+ * sliderの設定
+   --------------------*/
+
+.top-product-slider-wrapper {
+  width: min(95%, calc(1300px + (100vw - 1300px) / 2));
+  margin-left: auto;
+  position: relative; // splideの矢印アイコンを絶対配置するためにrelativeを指定
+}
+
+.top-product-slider-track {
+  padding-top: 40px; // カードのhover時に上に8pxあげるためにtrackにpaddingを追加
+  @include g.mq() {
+    padding-top: 56px;
+  }
+}
+
+.top-product-card-link {
+  transition: 0.3s ease-in-out;
+}
+
+.top-product-card-link:hover {
+  transform: translateY(-8px);
+}
+
+/* --------------------
+ * splide 矢印アイコン
+   --------------------*/
+.top-product .splide__arrows {
+  display: flex;
+  gap: 24px;
+  margin-top: 32px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(
+    calc(-50% - 2.5vw)
+  ); // 矢印アイコンの中央を基準にするために-50%、さらに画面幅の2.5%分左にずらす
+
+  @include g.mq() {
+    align-self: end;
+    top: -64px; /* 矢印アイコンの高さ分マイナスで移動 */
+    right: max(5%, calc((100vw - 1300px) / 2));
+    left: auto;
+    transform: none;
+    margin-top: 0;
+  }
+}
+.top-product .splide__arrow {
+  background: transparent;
+  opacity: 1;
+  width: 64px;
+  height: 64px;
+  border: 1px solid var(--color-text-white);
+  border-radius: 50vh;
+  position: relative; // svgアイコンの疑似要素の基準点
+  transition: background-color 0.2s ease;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 11px;
+    background: url("../img/icon-arrow-right-white.svg") no-repeat center /
+      contain;
+  }
+}
+
+.top-product .splide__arrow--next {
+  &::before {
+    transform: translate(-50%, -50%);
+  }
+
+  &:hover {
+    background-color: var(--color-bg-white-transparent);
+  }
+}
+.top-product .splide__arrow--prev {
+  &::before {
+    transform: translate(-50%, -50%) rotate(180deg);
+  }
+
+  &:hover {
+    background-color: var(--color-bg-white-transparent);
+  }
+}
+
+/* --------------------
+ * top-product ボタン
+   --------------------*/
+.top-product-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 136px;
+  @include g.mq() {
+    margin-top: 64px;
+  }
+}
+
+/* -----------------------------
+ * top-product(ブリッジ)
+   -----------------------------*/
+.top-product {
+  .product-intro-link img {
+    border: none;
+  }
+
+  .product-intro-label {
+    color: var(--color-text-white);
+    border: 1px solid var(--color-text-white);
+    border-radius: 50vh;
+    padding: 1px 7px;
+    font-size: 16px;
+  }
+
+  .product-intro-title {
+    color: var(--color-text-white);
+  }
+
+  .product-intro-link {
+    gap: 16px;
+  }
+
+  .product-intro-text-container {
+    gap: 8px;
+  }
+}
