@@ -1,28 +1,29 @@
 # 🧩 Cafe Site SUPPLE – Web Coding Demo（架空サイト）
 
-![supple demo-site](assets/img/supple_git_screenshot.webp "supple demo-site")
+![morisita demo-site](img/morisita_git_screenshot.webp "morisita demo-site")
 
 ## 🔗 Demo
 
-（仮想 URL）
+（Demo Site URL）
 [https://omi758.github.io/matsuyama-clinic-demo/](https://omi758.github.io/matsuyama-clinic-demo/)
 
 &nbsp;
 
 ## 📝 Overview（概要）
 
-HelloMentor 課題として制作した **カフェのサービスサイト**です。  
-**WordPress テーマとして PHP 化**し、テーマ開発を実施しました。
+HelloMentor 課題として制作した 製造業（ネジ・ボルトの専門メーカー）のコーポレートサイト です。  
+**静的コーディングから WordPress オリジナルテーマとして構築**しました。
 
+- 静的コーディング → WordPress テーマ化（PHP）
 - WordPress 環境構築（Local）
-- テンプレート階層に沿った PHP 化
-- エスケープ処理を用いた安全なテンプレート構築
-- カスタム投稿タイプ（menu / shoplist）を実装
-- 都道府県別の **店舗検索（カスタムフィールド × 絞り込み）** を実装
-- editor-style.scss で投稿画面とフロントの見た目を統一
-- SEO SIMPLE PACK によるメタ設定
-- 必要なプラグイン導入による CMS の最適化
-- BEM に基づく CSS 設計 + SCSS 運用
+- カスタム投稿タイプ：product / business / access
+- BreadCrumb NavXT を CPT 用にカスタム
+- GSAP（ScrollTrigger / SmoothScroll）で動的アニメーション
+- Splide + SVG プログレスリング（Web Animation API）
+- BEM に基づく CSS 設計 + SCSS 運用による再利用性を重視
+- CloudSecure WP Security など実務的なセキュリティプラグインも導入
+- 管理画面の利便性（編集項目の最適化・フィールド管理）
+- レスポンシブ対応（SP・PC）
 
 &nbsp;
 
@@ -35,37 +36,44 @@ HelloMentor 課題として制作した **カフェのサービスサイト**で
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" width="40" alt="JavaScript" >
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/wordpress/wordpress-original.svg" width="40" alt="WordPress" />
  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" width="40" alt="PHP" />
+ <img src="https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black" width="50" alt="GSAP" />
+<img src="https://img.shields.io/badge/Splide-005BBB?style=for-the-badge" width="50" alt="Splide" />
+
 </p>
 
 &nbsp;
 
 ## ✨ Features（制作ポイント）
 
-### 1. WordPress テーマ化（PHP によるテンプレート構築）
+### 1. WordPress オリジナルテーマとして構築
 
-- header, footer, front-page, archive, single, page などをテンプレート階層に沿って構成
-- ループ・条件分岐・カスタムクエリなど WordPress ロジックを実装
-- エスケープ処理（`esc_html()` / `esc_url()` など）で安全性に配慮
+- テンプレート階層（front-page / archive / single など）に沿って実装
+- 製品・事業紹介・アクセスを **CPT** で管理
+- ACF による管理画面のフィールド最適化
 
-### 2. 2 つのカスタム投稿タイプ + タクソノミー
+### 2. Splide + SVG（Web Animation API）を用いたアニメーション実装
 
-- カスタム投稿タイプ **menu（メニュー情報）** と **shoplist（店舗情報）** を実装
-- menu には “コーヒータイプ” のタクソノミーを追加し、分類管理
-- 投稿の追加／編集／削除はすべて管理画面から可能
+- Splide のスライダー機能
+- スライド切替に連動する SVG プログレスリングと画像のズーム演出
+- CTA 部分は auto-scroll（流れる文字）も実装
 
-### 3. 店舗検索機能（キーワード + 絞り込み検索）
+### 3. GSAP アニメーション
 
-- カスタムフィールドを使用し都道府県別に検索可能
+- ScrollTrigger によるスクロールアニメーション
+- SmoothScroll による自然なスクロール
+- ハンバーガーメニュー開閉アニメーション
 
-### 4. その他の基本構築
+### 4. アクセシビリティを意識した HTML 設計
 
-- editor-style.scss により **投稿画面とフロントの見た目を揃えて編集しやすさを向上**  
-  管理画面とフロントの表示差異をなくし、クライアントが迷わない編集画面を実現
-- パンくずリスト（Breadcrumb NavXT）
-- 問い合わせフォームには Contact Form 7 を導入
-- EWWW Image Optimizer による画像最適化
-- Yoast Duplicate Post によるブログ投稿の複製機能
-- レスポンシブ対応（SP・PC）
+- header / main / nav / footer など適切な landmark
+- aria 属性・alt の適切な付与と **セマンティックで読みやすい HTML 構造** を意識して実装
+
+### 5. CMS（管理画面）の利便性向上
+
+- CPT ごとの編集フィールドを最適化
+- ACF（無料版）で運用しやすい UI を構築
+- Contact Form 7 / SEO SIMPLE PACK / EWWW Image Optimizer / CloudSecure WP Security 等  
+  実務的なプラグインを導入
 
 &nbsp;
 
@@ -74,45 +82,71 @@ HelloMentor 課題として制作した **カフェのサービスサイト**で
 ```text
 .
 ├── 404.php
-├── archive-menu.php
-├── archive-shoplist.php
+├── archive-access.php
+├── archive-product.php
 ├── footer.php
 ├── front-page.php
 ├── functions.php
 ├── header.php
 ├── index.php
-├── page-consept.php
-├── search.php
+├── page-company.php
+├── page-contact.php
+├── page-message.php
+├── page-privacy.php
+├── single-business.php
+├── single-product.php
 ├── single.php
 ├── style.css
-├── assets
-│   ├── css
-│   │   ├── editor-style.css
-│   │   ├── editor-style.css.map
-│   │   ├── style.css
-│   │   └── style.css.map
-│   ├── img
-│   ├── js
-│   │   └── main.js
-│   └── scss
-│       ├── component
-│       ├── foundation
-│       ├── global
-│       ├── layout
-│       ├── page
-│       │   ├── consept
-│       │   ├── error
-│       │   ├── menu
-│       │   ├── shoplist
-│       │   ├── single
-│       │   └── top
-│       ├── utility
-│       ├── editor-style.scss
-│       └── style.scss
+├── css
+│   ├── editor-style.css
+│   ├── style.css
+│   ├── style.css.map
+│   └── vendor
+│       └── splide-core.min.css
+├── img
+├── js
+│   ├── component
+│   │   ├── cta-auto-scroll.js
+│   │   ├── hamburger-menu.js
+│   │   ├── product-single-gallery.js
+│   │   ├── scroll-top-button.js
+│   │   ├── switch-viewport.js
+│   │   ├── toc-scrolltrigger.js
+│   │   ├── top-kv-slider.js
+│   │   └── top-product-slider.js
+│   ├── main.js
+│   └── vendor
+│       ├── gsap.min.js
+│       ├── ScrollToPlugin.min.js
+│       ├── ScrollTrigger.min.js
+│       ├── splide-extension-auto-scroll.min.js
+│       └── splide.min.js
+├── scss
+│   ├── component
+│   ├── foundation
+│   ├── global
+│   ├── layout
+│   ├── page
+│   │   ├── access
+│   │   ├── business
+│   │   ├── company
+│   │   ├── contact
+│   │   ├── message
+│   │   ├── news
+│   │   ├── product
+│   │   └── top
+│   ├── utility
+│   ├── editor-style.scss
+│   └── style.scss
 └── template-parts
-    ├── loop-blog.php
-    ├── loop-menu.php
-    └── loop-shoplist.php
+    ├── breadcrumb.php
+    ├── loop-business.php
+    ├── loop-news.php
+    ├── loop-products.php
+    ├── sidebar-news.php
+    ├── subkv-archive.php
+    ├── subkv-single-news.php
+    └── subkv-single.php
 ```
 
 ## 💻 Development Environment（開発環境）
@@ -120,6 +154,7 @@ HelloMentor 課題として制作した **カフェのサービスサイト**で
 - Local by Flywheel（WordPress）
 - VSCode / GitHub Copilot / Gemini Code Assist
 - SCSS / Live Sass Compiler
+- ES Modules
 - ホットリロード環境（node_modules / BrowserSync）
 
 &nbsp;
