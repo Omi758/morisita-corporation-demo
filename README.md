@@ -1,4 +1,4 @@
-# 🧩 Coporate site 株式会社森下 – Web Coding Demo（架空サイト）
+# 🧩 株式会社森下 – Web Coding Demo（架空サイト）
 
 ![morisita demo-site](img/morisita_git_screenshot.webp "morisita demo-site")
 
