@@ -1,4 +1,4 @@
-# 🧩 Cafe Site SUPPLE – Web Coding Demo（架空サイト）
+# 🧩 Coporate site 株式会社森下 – Web Coding Demo（架空サイト）
 
 ![morisita demo-site](img/morisita_git_screenshot.webp "morisita demo-site")
 
@@ -11,19 +11,16 @@
 
 ## 📝 Overview（概要）
 
-HelloMentor 課題として制作した 製造業（ネジ・ボルトの専門メーカー）のコーポレートサイト です。  
+HelloMentor 課題として制作した **製造業（ネジ・ボルト専門メーカー）のコーポレートサイト** です。  
 **静的コーディングから WordPress オリジナルテーマとして構築**しました。
 
-- 静的コーディング → WordPress テーマ化（PHP）
-- WordPress 環境構築（Local）
+- WordPress テーマ化（PHP / テンプレート階層に沿って構築）
 - カスタム投稿タイプ：product / business / access
-- BreadCrumb NavXT を CPT 用にカスタム
-- GSAP（ScrollTrigger / SmoothScroll）で動的アニメーション
-- Splide + SVG プログレスリング（Web Animation API）
-- BEM に基づく CSS 設計 + SCSS 運用による再利用性を重視
-- CloudSecure WP Security など実務的なセキュリティプラグインも導入
-- 管理画面の利便性（編集項目の最適化・フィールド管理）
-- レスポンシブ対応（SP・PC）
+- ACF による管理画面フィールド最適化
+- GSAP（ScrollTrigger / SmoothScroll）・Splide を使ったアニメーション
+- BEM に基づいた CSS 設計 / SCSS による再利用性の高いコーディング
+- 管理画面の使いやすさと実務的なセキュリティを考慮
+- レスポンシブ対応（SP / PC）
 
 &nbsp;
 
@@ -66,14 +63,13 @@ HelloMentor 課題として制作した 製造業（ネジ・ボルトの専門�
 ### 4. アクセシビリティを意識した HTML 設計
 
 - header / main / nav / footer など適切な landmark
-- aria 属性・alt の適切な付与と **セマンティックで読みやすい HTML 構造** を意識して実装
+- aria 属性・alt の適切な付与 と セマンティックで読みやすい HTML 構造 を意識して実装
 
 ### 5. CMS（管理画面）の利便性向上
 
 - CPT ごとの編集フィールドを最適化
 - ACF（無料版）で運用しやすい UI を構築
-- Contact Form 7 / SEO SIMPLE PACK / EWWW Image Optimizer / CloudSecure WP Security 等  
-  実務的なプラグインを導入
+- Contact Form 7 / SEO SIMPLE PACK / EWWW Image Optimizer / CloudSecure WP Security 等の実務的なプラグインを導入
 
 &nbsp;
 
