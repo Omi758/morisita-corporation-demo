@@ -52,7 +52,7 @@ HelloMentor 課題として制作した **製造業（ネジ・ボルト専門�
 
 - Splide のスライダー機能
 - スライド切替に連動する SVG プログレスリングと画像のズーム演出
-- CTA 部分は auto-scroll（流れる文字）も実装
+- CTA 部分は auto-scroll（流れる文字）で実装
 
 ### 3. GSAP アニメーション
 
@@ -62,7 +62,6 @@ HelloMentor 課題として制作した **製造業（ネジ・ボルト専門�
 
 ### 4. アクセシビリティを意識した HTML 設計
 
-- header / main / nav / footer など適切な landmark
 - aria 属性・alt の適切な付与 と セマンティックで読みやすい HTML 構造 を意識して実装
 
 ### 5. CMS（管理画面）の利便性向上
