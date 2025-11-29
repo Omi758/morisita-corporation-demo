@@ -18,7 +18,7 @@ HelloMentor 課題として制作した **製造業（ネジ・ボルト専門�
 - カスタム投稿タイプ：product / business / access
 - ACF による管理画面フィールド最適化
 - GSAP（ScrollTrigger / SmoothScroll）・Splide を使ったアニメーション
-- BEM に基づいた CSS 設計 / SCSS による再利用性の高いコーディング
+- 保守性を意識した CSS 設計手法 / SCSS による再利用性の高いコーディング
 - 管理画面の使いやすさと実務的なセキュリティを考慮
 - レスポンシブ対応（SP / PC）
 
