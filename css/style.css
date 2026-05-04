@@ -918,7 +918,6 @@ component > pagination
   font-size: 14px;
   transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
   /* hover & focus */
-  /* 省略記号(…) */
 }
 .c-pagination-item .page-numbers:hover, .c-pagination-item .page-numbers:focus-visible {
   background-color: var(--color-bg-primary);
@@ -935,6 +934,9 @@ component > pagination
   border-color: var(--color-bg-primary);
   pointer-events: none;
   box-shadow: none;
+}
+.c-pagination-item .page-numbers {
+  /* 省略記号(…) */
 }
 .c-pagination-item .page-numbers.dots {
   border-color: transparent;
@@ -977,16 +979,25 @@ layout > header
 .header {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: var(--z-index-header);
   background-color: transparent;
+}
+
+/* ----- KVセクションを抜けた後に出現する固定ヘッダー -----
+*  translateY によるスライドインアニメーションは GSAP が制御する
+*  （CSS transition は書かない：二重アニメーションを避けるため）
+*/
+.header.is-stuck {
+  position: fixed;
+  background-color: var(--color-bg-white);
 }
 
 .header-inner {
   display: grid;
   grid-template-columns: 1fr 56px;
-  width: 100%;
   padding-top: 32px;
   align-items: center;
 }
@@ -1022,7 +1033,8 @@ layout > header
   filter: brightness(0) invert(1);
 }
 
-.page-sub .header-logo img {
+/* 下層ページ全般 および トップページでヘッダーが固定状態(.is-stuck)の時はカラーのロゴを表示 */
+:is(.page-sub, .page-top .header.is-stuck) .header-logo img {
   filter: none;
 }
 
@@ -1114,7 +1126,7 @@ layout > header
 }
 
 @media screen and (min-width: 768px) {
-  .page-sub .header-menu-nav {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-nav {
     color: var(--color-text-base);
   }
 }
@@ -1157,10 +1169,10 @@ layout > header
 }
 
 @media screen and (min-width: 768px) {
-  .page-sub .header-menu-item:nth-child(2) .header-menu-item-jp, .page-sub .header-menu-item:nth-child(4) .header-menu-item-jp, .page-sub .header-menu-item:nth-child(5) .header-menu-item-jp {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(2) .header-menu-item-jp, :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(4) .header-menu-item-jp, :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(5) .header-menu-item-jp {
     position: relative;
   }
-  .page-sub .header-menu-item:nth-child(2) .header-menu-item-jp::after, .page-sub .header-menu-item:nth-child(4) .header-menu-item-jp::after, .page-sub .header-menu-item:nth-child(5) .header-menu-item-jp::after {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(2) .header-menu-item-jp::after, :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(4) .header-menu-item-jp::after, :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(5) .header-menu-item-jp::after {
     content: "";
     position: absolute;
     left: 0;
@@ -1172,7 +1184,7 @@ layout > header
     transform: translateY(-8px);
     transition: transform 0.2s ease, opacity 0.3s ease;
   }
-  .page-sub .header-menu-item:nth-child(2) .header-menu-item-jp:hover::after, .page-sub .header-menu-item:nth-child(4) .header-menu-item-jp:hover::after, .page-sub .header-menu-item:nth-child(5) .header-menu-item-jp:hover::after {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(2) .header-menu-item-jp:hover::after, :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(4) .header-menu-item-jp:hover::after, :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(5) .header-menu-item-jp:hover::after {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1272,10 +1284,10 @@ layout > header
 }
 
 @media screen and (min-width: 768px) {
-  .page-sub .header-menu-item:first-child .header-menu-item-en {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:first-child .header-menu-item-en {
     position: relative;
   }
-  .page-sub .header-menu-item:first-child .header-menu-item-en::after {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:first-child .header-menu-item-en::after {
     content: "";
     position: absolute;
     left: 0;
@@ -1287,7 +1299,7 @@ layout > header
     transform: translateY(-8px);
     transition: transform 0.2s ease, opacity 0.3s ease;
   }
-  .page-sub .header-menu-item:first-child .header-menu-item-en:hover::after {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:first-child .header-menu-item-en:hover::after {
     opacity: 1;
     transform: translateY(0);
   }
@@ -1337,13 +1349,13 @@ layout > header
   }
 }
 
-.page-sub .header-menu-item:nth-child(3) .header-menu-item-jp {
+:is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(3) .header-menu-item-jp {
   display: flex;
   align-items: center;
 }
 
 @media screen and (min-width: 768px) {
-  .page-sub .header-menu-item:nth-child(3) .header-menu-item-jp::after {
+  :is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(3) .header-menu-item-jp::after {
     content: "";
     width: 9px;
     aspect-ratio: 1/1;
@@ -2564,7 +2576,7 @@ page > business-design
     gap: 32px;
     grid-column: 1/2;
     position: sticky;
-    top: 0;
+    top: 96px;
     align-self: start;
   }
 }
@@ -3910,10 +3922,6 @@ page > 404
 .privacy-wrapper {
   margin: 80px 0;
   line-height: 1.9;
-  /* ----- 見出し ----- */
-  /* ----- 段落 ----- */
-  /* ------- 番号付きリスト ------- */
-  /* Gutenbergは .wp-block-list や .wp-block-group が間に入るので子孫で取る */
 }
 @media screen and (min-width: 768px) {
   .privacy-wrapper {
@@ -3922,6 +3930,9 @@ page > 404
 }
 .privacy-wrapper > * + * {
   margin-top: 1.2em;
+}
+.privacy-wrapper {
+  /* ----- 見出し ----- */
 }
 .privacy-wrapper h2 {
   font-size: 20px;
@@ -3943,8 +3954,15 @@ page > 404
     font-size: 20px;
   }
 }
+.privacy-wrapper {
+  /* ----- 段落 ----- */
+}
 .privacy-wrapper p {
   margin-top: 1em;
+}
+.privacy-wrapper {
+  /* ------- 番号付きリスト ------- */
+  /* Gutenbergは .wp-block-list や .wp-block-group が間に入るので子孫で取る */
 }
 .privacy-wrapper ol {
   padding-left: 0;

@@ -6,6 +6,7 @@ import { initializeScrollTopButton } from "./component/scroll-top-button.js"; //
 import { initializeTocScrollTrigger } from "./component/toc-scrolltrigger.js"; // 現在地を示す目次ナビ
 import { initializeProductSingleGallery } from "./component/product-single-gallery.js"; // product-singleのギャラリー表示
 import { initializeCtaAutoScroll } from "./component/cta-auto-scroll.js"; // ctaセクション流れる文字
+import { initializeHeaderScroll } from "./component/header-scroll.js"; // KV通過後のヘッダースライドイン
 
 // 全ての初期化を実行
 initializeHamburgerMenu();
@@ -17,3 +18,4 @@ initializeScrollTopButton();
 initializeTocScrollTrigger();
 initializeProductSingleGallery();
 initializeCtaAutoScroll();
+initializeHeaderScroll();

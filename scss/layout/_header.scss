@@ -9,18 +9,28 @@ layout > header
 .header {
   position: absolute;
   top: 0;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: var(--z-index-header);
   background-color: transparent;
+}
+
+/* ----- KVセクションを抜けた後に出現する固定ヘッダー -----
+*  translateY によるスライドインアニメーションは GSAP が制御する
+*  （CSS transition は書かない：二重アニメーションを避けるため）
+*/
+.header.is-stuck {
+  position: fixed;
+  background-color: var(--color-bg-white);
 }
 
 .header-inner {
   display: grid;
   grid-template-columns: 1fr 56px;
-  width: 100%;
   padding-top: 32px;
   align-items: center;
+  // 横幅は .l-container クラスに任せる（89% + max-width: var(--width-content)）
   @include g.mq() {
     padding-top: 48px;
     grid-template-columns: auto 1fr;
@@ -50,7 +60,8 @@ layout > header
   filter: brightness(0) invert(1);
 }
 
-.page-sub .header-logo img {
+/* 下層ページ全般 および トップページでヘッダーが固定状態(.is-stuck)の時はカラーのロゴを表示 */
+:is(.page-sub, .page-top .header.is-stuck) .header-logo img {
   filter: none;
 }
 
@@ -138,8 +149,8 @@ layout > header
   }
 }
 
-// 下層ページのheaderナビメニュー文字色
-.page-sub .header-menu-nav {
+// 下層ページ および トップページのヘッダー固定状態(.is-stuck)のheaderナビメニュー文字色
+:is(.page-sub, .page-top .header.is-stuck) .header-menu-nav {
   @include g.mq() {
     color: var(--color-text-base);
   }
@@ -173,8 +184,8 @@ layout > header
   }
 }
 
-.page-sub .header-menu-item {
-  // 下層ページ：2,4,5番目のメニュー項目にアニメーション(黒)を適用
+// 下層ページ および トップページのヘッダー固定状態(.is-stuck)：2,4,5番目のメニュー項目にアニメーション(黒)を適用
+:is(.page-sub, .page-top .header.is-stuck) .header-menu-item {
   &:nth-child(2),
   &:nth-child(4),
   &:nth-child(5) {
@@ -255,7 +266,7 @@ layout > header
   }
 }
 
-.page-sub .header-menu-item:first-child .header-menu-item-en {
+:is(.page-sub, .page-top .header.is-stuck) .header-menu-item:first-child .header-menu-item-en {
   @include g.mq() {
     @include mixin.hover-underline-animation-black;
   }
@@ -303,13 +314,13 @@ layout > header
   }
 }
 
-// 下層ページ:3番目(事業紹介)矢印アイコン
-.page-sub .header-menu-item:nth-child(3) .header-menu-item-jp {
+// 下層ページ および トップページのヘッダー固定状態(.is-stuck)：3番目(事業紹介)矢印アイコン
+:is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(3) .header-menu-item-jp {
   display: flex;
   align-items: center;
 }
 
-.page-sub .header-menu-item:nth-child(3) .header-menu-item-jp::after {
+:is(.page-sub, .page-top .header.is-stuck) .header-menu-item:nth-child(3) .header-menu-item-jp::after {
   @include g.mq() {
     content: "";
     width: 9px;

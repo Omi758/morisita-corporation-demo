@@ -11,8 +11,8 @@
 
 <body <?php body_class(); ?>>
   <?php wp_body_open(); ?>
-  <header class="header l-container">
-    <div class="header-inner">
+  <header class="header">
+    <div class="header-inner l-container">
       <h1 class="header-logo">
         <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
           <img src="<?php echo esc_url( get_template_directory_uri() . '/img/logo-color.svg' ); ?>" width="300"

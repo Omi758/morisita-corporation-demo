@@ -27,7 +27,8 @@ page > business-design
     gap: 32px;
     grid-column: 1/ 2;
     position: sticky;
-    top: 0;
+    // 固定ヘッダー(.header.is-stuck)で隠れないように、ヘッダーの実高+余白分をオフセット
+    top: 96px;
     align-self: start;
   }
 }
